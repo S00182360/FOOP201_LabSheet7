@@ -66,6 +66,9 @@ namespace FOOP201_LabSheet7
         }
 
         abstract public void UpdatePrice(decimal percInc);
+        //{
+        //    Price *= (1 + percInc);
+        //}
         
     }
 
