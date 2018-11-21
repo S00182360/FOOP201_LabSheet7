@@ -64,6 +64,11 @@ namespace FOOP201_LabSheet7
         {
             return String.Format("Name: {0}\nPrice: {1}EUR\nRelease Date: {2}\n", Name, Price, ReleaseDate);
         }
+
+        public virtual void UpdatePrice(decimal percInc)
+        {
+            Price *= (1 + percInc);
+        }
     }
 
     class ComputerGame : Game
@@ -87,6 +92,12 @@ namespace FOOP201_LabSheet7
         public decimal GetDiscountPrice()
         {
             return Price * 0.9m;
+        }
+
+        public override void UpdatePrice(decimal percInc)
+        {
+            base.UpdatePrice(percInc);
+            Console.WriteLine("Price updated from ComputerGame Class");
         }
     }
 }
