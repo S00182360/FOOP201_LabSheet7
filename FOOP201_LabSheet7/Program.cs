@@ -10,14 +10,14 @@ namespace FOOP201_LabSheet7
     {
         static void Main(string[] args)
         {
-            Game g1 = new Game("Monopoly", 19.99m, new DateTime(1970, 01, 31));
+            //Game g1 = new Game("Monopoly", 19.99m, new DateTime(1970, 01, 31));
 
             //Game g2 = new Game() { Price = 10.99m, ReleaseDate = new DateTime(2000, 6, 15) };
 
             ComputerGame cg1 = new ComputerGame("Tomb Raider", 49.99m, new DateTime(1996, 10, 25), "15+");
             ComputerGame cg2 = new ComputerGame("Legend of Zelda", 5.99m, new DateTime(1986, 02, 21), "3+");
 
-            DisplayGame(g1);
+            //DisplayGame(g1);
             Console.WriteLine("");
             //Console.WriteLine(g2);
             DisplayGame(cg1);
@@ -34,7 +34,7 @@ namespace FOOP201_LabSheet7
         }
     }
 
-    class Game
+    abstract class Game
     {
         public Game(string name, decimal price, DateTime releaseDate)
         {
@@ -65,10 +65,8 @@ namespace FOOP201_LabSheet7
             return String.Format("Name: {0}\nPrice: {1}EUR\nRelease Date: {2}\n", Name, Price, ReleaseDate);
         }
 
-        public virtual void UpdatePrice(decimal percInc)
-        {
-            Price *= (1 + percInc);
-        }
+        abstract public void UpdatePrice(decimal percInc);
+        
     }
 
     class ComputerGame : Game
@@ -94,10 +92,18 @@ namespace FOOP201_LabSheet7
             return Price * 0.9m;
         }
 
+        //public void UpdatePrice(decimal percInc)
+        //{
+        //    base.UpdatePrice(percInc);
+        //    Price *= (1 + percInc);
+        //    Console.WriteLine("Price updated from ComputerGame Class");
+        //}
+
         public override void UpdatePrice(decimal percInc)
         {
-            base.UpdatePrice(percInc);
+            Price *= (1 + percInc);
             Console.WriteLine("Price updated from ComputerGame Class");
+            throw new NotImplementedException();
         }
     }
 }
